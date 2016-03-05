@@ -45,14 +45,14 @@
 
 		<echo message="[pluginBeforeBuildWebappWarHook] Copie file ${localArtifactDir}/WEB-INF/data/store.xml.ref to ${PluginWebappWarTmpDir}/WEB-INF/data/store.xml" />
 		<copy file="${localArtifactDir}/WEB-INF/data/store.xml.ref" tofile="${PluginWebappWarTmpDir}/WEB-INF/data/store.xml" overwrite="true" encoding="UTF-8" outputencoding="UTF-8" />
-
+		<!--
 		<mkdir dir="${PluginWebappWarTmpDir}/upload/" />
 		<copy todir="${PluginWebappWarTmpDir}/upload/" overwrite="true" verbose="true" encoding="UTF-8" outputencoding="UTF-8">
 			<fileset dir="${localArtifactDir}/upload/">
 				<include name="**/*.*" />
 			</fileset>
 		</copy>
-
+		-->
 	</target>
 
 </project>

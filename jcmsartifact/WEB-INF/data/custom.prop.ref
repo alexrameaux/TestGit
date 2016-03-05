@@ -14,7 +14,7 @@ channel.charter: false
 channel.is-authentication-required: false
 channel.ssl.enabled: false
 channel.ssl.port: 443
-channel.urid: c
+channel.urid: merg
 channel.default-group: j_36
 channel.default-admin: j_2
 channel.default-author: 
