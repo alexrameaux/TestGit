@@ -1,0 +1,58 @@
+<project basedir=".">
+	<target name="pluginBeforeTomcatConfigurationHook">
+	</target>
+
+	<target name="pluginBeforeTomcatStartHook">
+		<copy todir="${baseJCMS_webapp}" overwrite="true" encoding="UTF-8" outputencoding="UTF-8">
+			<fileset dir="${pluginSrc}">
+				<include name="**/*.*" />
+				<exclude name="build.properties" />
+				<exclude name="additionalBuildTarget.xml" />
+			</fileset>
+		</copy>
+
+		<replaceregexp file="${baseJCMS_webapp}/WEB-INF/data/custom.prop" byline="true" encoding="UTF-8" match="channel.urid:(.*)" replace="channel.urid:jenkins" />
+		<replaceregexp file="${baseJCMS_webapp}/WEB-INF/data/custom.prop" byline="true" encoding="UTF-8" match="channel.jcmsdb:(.*)" replace="channel.jcmsdb:derby" />
+	</target>
+
+	<target name="pluginBeforeTestStartHook">
+	</target>
+
+	<target name="pluginAfterTestStartHook">
+	</target>
+
+	<target name="pluginBeforeExportHook">
+	</target>
+
+	<target name="pluginAfterExportHook">
+	</target>
+
+	<target name="pluginAfterTomcatEndHook">
+	</target>
+
+	<target name="pluginBeforeBuildWebappWarHook">
+		<copy todir="${PluginWebappWarTmpDir}" overwrite="true" encoding="UTF-8" outputencoding="UTF-8">
+			<fileset dir="${pluginSrc}">
+				<include name="**/*.*" />
+				<exclude name="build.properties" />
+				<exclude name="additionalBuildTarget.xml" />
+			</fileset>
+		</copy>
+		
+
+		<echo message="[pluginBeforeBuildWebappWarHook] Copie file ${localArtifactDir}/WEB-INF/data/custom.prop.ref to ${PluginWebappWarTmpDir}/WEB-INF/data/custom.prop" />
+		<copy file="${localArtifactDir}/WEB-INF/data/custom.prop.ref" tofile="${PluginWebappWarTmpDir}/WEB-INF/data/custom.prop" overwrite="true" encoding="UTF-8" outputencoding="UTF-8" />
+
+		<echo message="[pluginBeforeBuildWebappWarHook] Copie file ${localArtifactDir}/WEB-INF/data/store.xml.ref to ${PluginWebappWarTmpDir}/WEB-INF/data/store.xml" />
+		<copy file="${localArtifactDir}/WEB-INF/data/store.xml.ref" tofile="${PluginWebappWarTmpDir}/WEB-INF/data/store.xml" overwrite="true" encoding="UTF-8" outputencoding="UTF-8" />
+
+		<mkdir dir="${PluginWebappWarTmpDir}/upload/" />
+		<copy todir="${PluginWebappWarTmpDir}/upload/" overwrite="true" verbose="true" encoding="UTF-8" outputencoding="UTF-8">
+			<fileset dir="${localArtifactDir}/upload/">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+
+	</target>
+
+</project>
